@@ -1,8 +1,8 @@
 package matchi;
 
-public class MATCHiTest {
+public class MatchiTest {
 
-	public MATCHiTest() {
+	public MatchiTest() {
 		// TODO Auto-generated constructor stub
 	}
 
