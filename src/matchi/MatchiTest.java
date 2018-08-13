@@ -10,6 +10,8 @@ public class MatchiTest {
 	@Test
 	public void test() {
 		Matchi matchi = new Matchi();
-		matchi.login();
+		
+		matchi.login("mjukvarutestare@mailinator.com", "mjukvarutestare");
+		matchi.logout();
 	}
 }
