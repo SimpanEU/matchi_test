@@ -10,6 +10,11 @@ public class MatchiTest {
 	@Test
 	public void test() {
 		Matchi matchi = new Matchi();
-		matchi.login();
+		matchi.login("mjukvarutestare@mailinator.com", "mjukvarutestare");
+		matchi.search("Hönö");
+		matchi.booking();
+		matchi.payment();
+		matchi.logout();
+		matchi.quit();
 	}
 }
