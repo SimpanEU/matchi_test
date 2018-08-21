@@ -48,12 +48,11 @@ public class Matchi {
 		sleep(1000);
 	}
 
-	public void bookTime(int time) {
-		time = time - 1;
+	public void bookFirstAvailable() {
 		sleep(1000);
-		driver.findElement(By.xpath("(//button[@type='button'])[" + time + "]")).click();
+		driver.findElement(By.xpath("//ul[@class='list-inline no-margin']//li[1]//button[1]")).click();
 		sleep(1000);
-		driver.findElement(By.id("sedca8f7c5ca8ada9015cb27c6ec15795")).click();
+		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/section[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[2]/table[1]/tbody[1]/tr[1]/td[6]/a[1]")).click();
 	}
 
 	public void payWithCard(String cardnr, String name, String month, String year, String cvv) {
