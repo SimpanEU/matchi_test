@@ -78,6 +78,17 @@ public class Matchi {
 		sleep(1000);
 	}
 
+	public void payWithExistingCard() {
+		sleep(1000);
+		driver.findElement(By.id("btnSubmit")).click();
+		sleep(3000);
+		driver.findElement(By.linkText("Stäng fönstret")).click();
+		sleep(1000);
+	}
+
+	public void payWithSwish() {
+	}
+
 	public void unbook() {
 		driver.get(baseUrl + "profile/bookings");
 		sleep(1000);
