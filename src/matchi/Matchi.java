@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class Matchi {
 
@@ -17,23 +18,86 @@ public class Matchi {
 		String user = System.getProperty("user.name");
 		System.setProperty("webdriver.chrome.driver", "C:/Users/" + user + "/eclipse-workspace/chromedriver.exe");
 		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window();
-	    baseUrl = "https://beta1.matchi.se/";
-	}
-	
-	public void login(String user, String pass) {
-		driver.get(baseUrl + "/");
-	    driver.findElement(By.linkText("Logga in")).click();
-	    driver.findElement(By.id("username")).clear();
-	    driver.findElement(By.id("username")).sendKeys(user);
-	    driver.findElement(By.id("password")).clear();
-	    driver.findElement(By.id("password")).sendKeys(pass);
-	    driver.findElement(By.xpath("//button[@type='submit']")).click();
-		
-	}
-	public void logout() {
-	    driver.findElement(By.linkText("Mjuk")).click();
-	    driver.findElement(By.linkText("Logga ut")).click();
+		baseUrl = "https://beta1.matchi.se/";
 	}
 
+	public void login(String user, String pass) {
+		driver.get(baseUrl);
+		driver.findElement(By.linkText("Logga in")).click();
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys(user);
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys(pass);
+		driver.findElement(By.xpath("//button[@type='submit']")).click();
+
+	}
+
+	public void logout() {
+		driver.findElement(By.linkText("Mjuk")).click();
+		driver.findElement(By.linkText("Logga ut")).click();
+	}
+
+	public void search(String name) {
+		driver.findElement(By.linkText("Boka")).click();
+		driver.findElement(By.name("q")).click();
+		driver.findElement(By.name("q")).clear();
+		driver.findElement(By.name("q")).sendKeys(name);
+		driver.findElement(By.name("submit")).click();
+		sleep(1000);
+	}
+
+	public void bookTime(int time) {
+		time = time - 1;
+		sleep(1000);
+		driver.findElement(By.xpath("(//button[@type='button'])[" + time + "]")).click();
+		sleep(1000);
+		driver.findElement(By.id("sedca8f7c5ca8ada9015cb27c6ec15795")).click();
+	}
+
+	public void payWithCard(String cardnr, String name, String month, String year, String cvv) {
+		sleep(1000);
+		driver.findElement(By.xpath("//label[@for='CREDIT_CARD']")).click();
+		driver.findElement(By.xpath("//form[@id='confirmForm']/div[2]/div[3]/div[2]/div[2]/div/label")).click();
+		sleep(1000);
+		driver.findElement(By.id("btnSubmit")).click();
+		sleep(1000);
+		driver.findElement(By.xpath("//input[@type='tel']")).clear();
+		driver.findElement(By.xpath("//input[@type='tel']")).sendKeys(cardnr);
+		driver.findElement(By.xpath("//input[@type='text']")).clear();
+		driver.findElement(By.xpath("//input[@type='text']")).sendKeys(name);
+		new Select(driver.findElement(By.xpath("//form[@id='adyen-encrypted-form']/div/div/div/div[2]/div[3]/select")))
+				.selectByVisibleText(month);
+		new Select(driver.findElement(By.id("expiryYear"))).selectByVisibleText(year);
+		driver.findElement(By.xpath("(//input[@type='tel'])[2]")).clear();
+		driver.findElement(By.xpath("(//input[@type='tel'])[2]")).sendKeys(cvv);
+		driver.findElement(By.cssSelector("input.btn.btn-success")).click();
+		sleep(3000);
+		driver.findElement(By.linkText("Stäng fönstret")).click();
+		sleep(1000);
+	}
+
+	public void unbook() {
+		driver.get(baseUrl + "profile/bookings");
+		sleep(1000);
+		driver.findElement(By.linkText("Avboka")).click();
+		sleep(300);
+		driver.findElement(By.linkText("Avboka")).click();
+		driver.findElement(By.id("cancelCloseBtn")).click();
+		driver.get(baseUrl);
+	}
+
+	public void quit() {
+		sleep(5000);
+		driver.quit();
+	}
+
+	public void sleep(int ms) {
+		try {
+			Thread.sleep(ms);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+}
