@@ -83,7 +83,16 @@ public class Matchi {
 		sleep(1000);
 	}
 
-	public void payWithSwish() {
+	public void payWithSwish(String nr) {
+		sleep(1000);
+		driver.findElement(By.xpath("//label[@for='swish']")).click();
+		sleep(1000);
+		driver.findElement(By.id("btnSubmit")).click();
+		sleep(3000);
+		driver.findElement(By.xpath("//input[@id='swish.telephoneNumber']")).clear();
+		driver.findElement(By.xpath("//input[@id='swish.telephoneNumber']")).sendKeys(nr);
+		driver.findElement(By.xpath("//input[@id='mainSubmit']")).click();
+		sleep(3000);
 	}
 
 	public void unbook() {
