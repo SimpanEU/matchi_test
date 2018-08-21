@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class Matchi {
 
-	private WebDriver driver;
+	WebDriver driver;
 	private String baseUrl;
 
 	public Matchi() {
@@ -19,8 +19,6 @@ public class Matchi {
 		System.setProperty("webdriver.chrome.driver", "C:/Users/" + user + "/eclipse-workspace/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().window();
-		baseUrl = "https://beta1.matchi.se/";
 	}
 
 	public void login(String user, String pass) {
