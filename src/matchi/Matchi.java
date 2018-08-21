@@ -82,7 +82,7 @@ public class Matchi {
 		driver.get(baseUrl + "profile/bookings");
 		sleep(1000);
 		driver.findElement(By.linkText("Avboka")).click();
-		sleep(300);
+		sleep(1000);
 		driver.findElement(By.linkText("Avboka")).click();
 		driver.findElement(By.id("cancelCloseBtn")).click();
 		driver.get(baseUrl);
