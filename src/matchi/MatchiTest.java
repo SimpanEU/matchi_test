@@ -22,7 +22,8 @@ public class MatchiTest {
 		assertEquals(matchi.driver.getPageSource().contains("Hönö Tennissällskap"), true);
 		matchi.bookFirstAvailable();
 		assertEquals(matchi.driver.getPageSource().contains("Boka"), true);
-		matchi.payWithCard("2223 0000 4841 0010", "MjukVarutestare", "10", "2020", "737");
+		matchi.payWithCard("2223000048410010", "MjukVarutestare", "10", "2020", "737");
+		assertEquals(matchi.driver.getPageSource().contains("Tack för din bokning!"), true);
 		matchi.unbook();
 		assertEquals(matchi.driver.getPageSource().contains("Inga kommande bokningar."), true);
 		
@@ -31,6 +32,7 @@ public class MatchiTest {
 		matchi.bookFirstAvailable();
 		assertEquals(matchi.driver.getPageSource().contains("Boka"), true);
 		matchi.payWithExistingCard();
+		assertEquals(matchi.driver.getPageSource().contains("Tack för din bokning!"), true);
 		matchi.unbook();
 		assertEquals(matchi.driver.getPageSource().contains("Inga kommande bokningar."), true);
 		

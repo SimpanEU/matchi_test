@@ -70,17 +70,13 @@ public class Matchi {
 		driver.findElement(By.xpath("(//input[@type='tel'])[2]")).clear();
 		driver.findElement(By.xpath("(//input[@type='tel'])[2]")).sendKeys(cvv);
 		driver.findElement(By.cssSelector("input.btn.btn-success")).click();
-		sleep(3000);
-		driver.findElement(By.linkText("Stäng fönstret")).click();
-		sleep(1000);
+		sleep(2500);
 	}
 
 	public void payWithExistingCard() {
 		sleep(1000);
 		driver.findElement(By.id("btnSubmit")).click();
-		sleep(3000);
-		driver.findElement(By.linkText("Stäng fönstret")).click();
-		sleep(1000);
+		sleep(2500);
 	}
 
 	public void payWithSwish(String nr) {
