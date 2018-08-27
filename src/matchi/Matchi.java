@@ -45,7 +45,16 @@ public class Matchi {
 		driver.findElement(By.name("submit")).click();
 		sleep(1000);
 	}
-
+	
+	public void book() {
+		driver.findElement(By.linkText("Boka")).click();		
+		sleep(1000);
+		driver.findElement(By.cssSelector("div.btn-group.open > div.dropdown-menu.open > ul.dropdown-menu.inner > li:nth-of-type(3) > a"));
+		sleep(1000);
+		driver.findElement(By.cssSelector("[name=\'submit\']")).click();
+		driver.findElement(By.linkText("Boka")).click();
+	}
+	
 	public void bookFirstAvailable() {
 		sleep(1000);
 		driver.findElement(By.xpath("//ul[@class='list-inline no-margin']//li[1]//button[1]")).click();
@@ -101,6 +110,19 @@ public class Matchi {
 		driver.get(baseUrl);
 	}
 
+	public void forgetPassword(String user, String pass) {
+		driver.get(baseUrl);
+		driver.findElement(By.linkText("Logga in")).click();
+		sleep(1000);
+		driver.findElement(By.cssSelector("small")).click();
+		driver.findElement(By.linkText("Logga in")).click();
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys(user);
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys(pass);
+		driver.findElement(By.xpath("//button[@type='submit']")).click();
+	}
+	
 	public void quit() {
 		sleep(5000);
 		driver.quit();
