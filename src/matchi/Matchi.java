@@ -45,14 +45,23 @@ public class Matchi {
 		driver.findElement(By.name("submit")).click();
 		sleep(1000);
 	}
-	
-	public void book() {
+
+	public void refreshSearch() {
 		driver.findElement(By.linkText("Boka")).click();		
 		sleep(1000);
-		driver.findElement(By.cssSelector("div.btn-group.open > div.dropdown-menu.open > ul.dropdown-menu.inner > li:nth-of-type(3) > a"));
+		driver.findElement(By.cssSelector("div.row > div:nth-of-type(2) > div.form-group > div.btn-group > button.btn.dropdown-toggle.form-control > span.filter-option.pull-left")).click();
+		driver.findElement(By.linkText("Squash")).click();
 		sleep(1000);
 		driver.findElement(By.cssSelector("[name=\'submit\']")).click();
-		driver.findElement(By.linkText("Boka")).click();
+		driver.findElement(By.linkText("Boka")).click();	
+		sleep(1000);
+	}
+	
+	//trial...
+	public boolean checkRefreshSearch(String expectedText) {	
+		WebElement element=driver.findElement(By.cssSelector("div.row > div:nth-of-type(2) > div.form-group > div.btn-group > button.btn.dropdown-toggle.form-control > span.filter-option.pull-left"));
+		String text=element.getText();
+		return text.contains(expectedText);
 	}
 	
 	public void bookFirstAvailable() {
