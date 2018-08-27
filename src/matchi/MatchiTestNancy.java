@@ -13,7 +13,7 @@ public class MatchiTestNancy {
 	
 	@Test
 	public void test2() {
-		
+		/*
 		// Loggar in med ogiltig data SQL injection
 		matchi.login("'OR' '='", "'OR' '='");
 		assertEquals(matchi.driver.getPageSource().contains("Logga in"), true);
@@ -33,13 +33,12 @@ public class MatchiTestNancy {
 		matchi.search("**********");
 		assertEquals(matchi.driver.getPageSource().contains("Inga anläggningar hittades"), true);
 		matchi.logout();
-	
-		/*
-		// Återställa sökningen -koden funkar ej än..
-		matchi.login("mjukvarutestare2@mailinator.com", "mjukvarutestare");
-		matchi.book();
-		assertEquals(matchi.driver.getPageSource().contains("Välj sport"), true);
 		*/
+
+		// Återställa sökningen 
+		matchi.login("mjukvarutestare2@mailinator.com", "mjukvarutestare");
+		matchi.refreshSearch();
+		assertTrue(matchi.checkRefreshSearch("Välj sport"));;
 		
 		
 	}
