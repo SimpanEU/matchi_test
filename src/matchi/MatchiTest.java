@@ -17,36 +17,38 @@ public class MatchiTest {
 		matchi.login("mjukvarutestare2@mailinator.com", "mjukvarutestare");
 		assertEquals(matchi.driver.getTitle().contains("Mjuk Varutestare"), true);
 		
-		// SÃ¶ker, bokar och betalar med nytt betalningskort.
-		matchi.search("HÃ¶nÃ¶");
-		assertEquals(matchi.driver.getPageSource().contains("HÃ¶nÃ¶ TennissÃ¤llskap"), true);
+		// Söker, bokar och betalar med nytt betalningskort.
+		matchi.search("Hönö");
+		assertEquals(matchi.driver.getPageSource().contains("Hönö Tennissällskap"), true);
 		matchi.bookFirstAvailable();
 		assertEquals(matchi.driver.getPageSource().contains("Boka"), true);
 		matchi.payWithCard("2223000048410010", "MjukVarutestare", "10", "2020", "737");
-		assertEquals(matchi.driver.getPageSource().contains("Tack fÃ¶r din bokning!"), true);
+		assertEquals(matchi.driver.getPageSource().contains("Tack för din bokning!"), true);
 		matchi.unbook();
 		assertEquals(matchi.driver.getPageSource().contains("Inga kommande bokningar."), true);
 		
-		// SÃ¶ker, bokar och betalar med befintligt sparat betalningskort.
-		matchi.search("HÃ¶nÃ¶");
+		// Söker, bokar och betalar med befintligt sparat betalningskort.
+		matchi.search("Hönö");
 		matchi.bookFirstAvailable();
 		assertEquals(matchi.driver.getPageSource().contains("Boka"), true);
 		matchi.payWithExistingCard();
-		assertEquals(matchi.driver.getPageSource().contains("Tack fÃ¶r din bokning!"), true);
+		assertEquals(matchi.driver.getPageSource().contains("Tack för din bokning!"), true);
 		matchi.unbook();
 		assertEquals(matchi.driver.getPageSource().contains("Inga kommande bokningar."), true);
 		
 		/*
-		// SÃ¶ker, bokar och betalar med swish.
-		matchi.search("HÃ¶nÃ¶");
+		// Söker, bokar och betalar med swish.
+		matchi.search("Hönö");
 		matchi.bookFirstAvailable();
 		matchi.payWithSwish("46701234567");
 		matchi.unbook();
 		*/
 		
-		// Loggar ut och stÃ¤nger av.
+		
+		
+		// Loggar ut och stänger av.
 		matchi.logout();
-		assertEquals(matchi.driver.getTitle().contains("Community och onlinebokning fÃ¶r racketsport"), true);
+		assertEquals(matchi.driver.getTitle().contains("Community och onlinebokning för racketsport"), true);
 		matchi.quit();
 	}
 }
