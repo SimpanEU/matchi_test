@@ -19,26 +19,26 @@ public class MatchiTestNancy {
 		assertEquals(matchi.driver.getPageSource().contains("Logga in"), true);
 		matchi.logout();
 		
-		// Glömt lösenord har bug
-		matchi.forgetPassword("mjukvarutestare2@mailinator.com", "mjukvarutestare");
+		// GlÃ¶mt lÃ¶senord har bug
+		matchi.forgetPassword("x", "x");
 		assertEquals(matchi.driver.getTitle().contains("Mjuk Varutestare"), true);
 		matchi.logout();
 		
-		// Sökning oglitiga tecken
+		// SÃ¶kning oglitiga tecken
 		matchi.search("----------");
-		assertEquals(matchi.driver.getPageSource().contains("Inga anläggningar hittades"), true);
+		assertEquals(matchi.driver.getPageSource().contains("Inga anlÃ¤ggningar hittades"), true);
 		matchi.logout();
 	
-		// Sökning oglitiga tecken
+		// SÃ¶kning oglitiga tecken
 		matchi.search("**********");
-		assertEquals(matchi.driver.getPageSource().contains("Inga anläggningar hittades"), true);
+		assertEquals(matchi.driver.getPageSource().contains("Inga anlÃ¤ggningar hittades"), true);
 		matchi.logout();
 		*/
 
-		// Återställa sökningen 
-		matchi.login("mjukvarutestare2@mailinator.com", "mjukvarutestare");
+		// Ã…terstÃ¤lla sÃ¶kningen 
+		matchi.login("x", "x");
 		matchi.refreshSearch();
-		assertTrue(matchi.checkRefreshSearch("Välj sport"));;
+		assertTrue(matchi.checkRefreshSearch("VÃ¤lj sport"));;
 		
 		
 	}
