@@ -14,31 +14,31 @@ public class MatchiTest {
 	@Test
 	public void test1() {
 		// Loggar in med giltig data
-		matchi.login("mjukvarutestare2@mailinator.com", "mjukvarutestare");
+		matchi.login("x", "x");
 		assertEquals(matchi.driver.getTitle().contains("Mjuk Varutestare"), true);
 		
-		// Söker, bokar och betalar med nytt betalningskort.
-		matchi.search("Hönö");
-		assertEquals(matchi.driver.getPageSource().contains("Hönö Tennissällskap"), true);
+		// SÃ¶ker, bokar och betalar med nytt betalningskort.
+		matchi.search("HÃ¶nÃ¶");
+		assertEquals(matchi.driver.getPageSource().contains("HÃ¶nÃ¶ TennissÃ¤llskap"), true);
 		matchi.bookFirstAvailable();
 		assertEquals(matchi.driver.getPageSource().contains("Boka"), true);
 		matchi.payWithCard("2223000048410010", "MjukVarutestare", "10", "2020", "737");
-		assertEquals(matchi.driver.getPageSource().contains("Tack för din bokning!"), true);
+		assertEquals(matchi.driver.getPageSource().contains("Tack fÃ¶r din bokning!"), true);
 		matchi.unbook();
 		assertEquals(matchi.driver.getPageSource().contains("Inga kommande bokningar."), true);
 		
-		// Söker, bokar och betalar med befintligt sparat betalningskort.
-		matchi.search("Hönö");
+		// SÃ¶ker, bokar och betalar med befintligt sparat betalningskort.
+		matchi.search("HÃ¶nÃ¶");
 		matchi.bookFirstAvailable();
 		assertEquals(matchi.driver.getPageSource().contains("Boka"), true);
 		matchi.payWithExistingCard();
-		assertEquals(matchi.driver.getPageSource().contains("Tack för din bokning!"), true);
+		assertEquals(matchi.driver.getPageSource().contains("Tack fÃ¶r din bokning!"), true);
 		matchi.unbook();
 		assertEquals(matchi.driver.getPageSource().contains("Inga kommande bokningar."), true);
 		
 		/*
-		// Söker, bokar och betalar med swish.
-		matchi.search("Hönö");
+		// SÃ¶ker, bokar och betalar med swish.
+		matchi.search("HÃ¶nÃ¶");
 		matchi.bookFirstAvailable();
 		matchi.payWithSwish("46701234567");
 		matchi.unbook();
@@ -46,9 +46,9 @@ public class MatchiTest {
 		
 		
 		
-		// Loggar ut och stänger av.
+		// Loggar ut och stÃ¤nger av.
 		matchi.logout();
-		assertEquals(matchi.driver.getTitle().contains("Community och onlinebokning för racketsport"), true);
+		assertEquals(matchi.driver.getTitle().contains("Community och onlinebokning fÃ¶r racketsport"), true);
 		matchi.quit();
 	}
 }
